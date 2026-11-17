@@ -4647,6 +4647,12 @@
                     "pages": [
                       "integrations/governance/agentsystems-notary"
                     ]
+                  },
+                  {
+                    "group": "Screwtape.ai",
+                    "pages": [
+                      "integrations/screwtape-ai/overview"
+                    ]
                   }
                 ]
               },

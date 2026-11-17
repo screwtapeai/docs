@@ -1,0 +1,36 @@
+---
+title: Screwtape.ai
+description: Check whether a seller is safe to pay before an Agno agent pays, and return a signed receipt.
+---
+
+# Screwtape.ai
+
+[Screwtape.ai](https://screwtape.ai) is a pre-payment safety check for AI agents. The Agno toolkit calls `POST /v1/payment-check` and returns **allow**, **review** or **block**, with reasons and a signed receipt. The check advises and records; it does not hold funds and does not independently stop a payment your code still makes.
+
+## Installation
+
+```bash
+pip install "screwtape-pay-safely[agno]"
+```
+
+## Usage
+
+```python
+from agno.agent import Agent
+from pay_safely import PaySafely
+from pay_safely.agno import SellerCheckTools
+
+agent = Agent(
+    tools=[SellerCheckTools(guard=PaySafely(agent_id="agno-buyer"))],
+)
+```
+
+Call `check_seller_before_paying` before paying any seller or paid API. Only pay when the result starts with `Safe to pay`.
+
+Free use is 3 calls per UTC day with no key, or 10 with a free key from [https://screwtape.ai/signup/](https://screwtape.ai/signup/). Then $0.005 per call. Pass `PaySafely(api_key="...")` when you have a key.
+
+## Resources
+
+- Package: [screwtape-pay-safely](https://pypi.org/project/screwtape-pay-safely/)
+- Source: [github.com/screwtapeai/pay-safely](https://github.com/screwtapeai/pay-safely)
+- Support: support@screwtape.ai
